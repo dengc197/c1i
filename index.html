@@ -2,105 +2,258 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Homepage</title>
+  <title>My Collection — Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="preload" href="styles.css" as="style">
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root{
+      --bg:#0b0c0f; --fg:#e9e9ee; --sub:#a4a6ad; --card:#12141a; --ring:#3a82f6;
+      --radius:18px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f6f7fb; --fg:#0c0d12; --sub:#5a5d67; --card:#ffffff; --ring:#2563eb; }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:radial-gradient(1200px 800px at 80% -10%, #1f2330 0%, var(--bg) 50%) fixed;
+      color:var(--fg); font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+      display:flex; flex-direction:column; min-height:100dvh;
+    }
+
+    /* Page container */
+    .wrap{width:min(1200px, 92%); margin:0 auto; padding:24px 0 48px}
+
+    /* Title */
+    header{
+      display:grid; place-items:center; text-align:center; padding:48px 0 28px;
+    }
+    h1{
+      margin:0; font-weight:750; letter-spacing:0.02em;
+      font-size:clamp(28px, 3.8vw, 56px);
+      line-height:1.05;
+      background:linear-gradient(180deg, var(--fg), color-mix(in oklab, var(--fg) 80%, var(--sub)));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .subtitle{margin-top:10px; color:var(--sub); font-size:clamp(14px, 1.6vw, 18px)}
+
+    /* Grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap:18px;
+    }
+    @media (max-width:1100px){ .grid{ grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width:900px){  .grid{ grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width:700px){  .grid{ grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width:460px){  .grid{ grid-template-columns: 1fr; } }
+
+    /* Card */
+    .card{
+      display:block; position:relative; overflow:hidden; border-radius:var(--radius);
+      background:var(--card); min-height:180px; aspect-ratio:16/9;
+      box-shadow: 0 6px 18px rgba(0,0,0,.25);
+      text-decoration:none; color:inherit; isolation:isolate;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .card:focus-visible{ outline:2px solid var(--ring); outline-offset:3px; }
+    .card:hover{ transform:translateY(-2px); box-shadow: 0 10px 26px rgba(0,0,0,.33); }
+
+    /* Video fits the card */
+    .card video, .card img{
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+      display:block;
+    }
+
+    /* Overlay label */
+    .label{
+      position:absolute; left:10px; bottom:10px;
+      background:rgba(0,0,0,.55); color:#fff; padding:8px 10px; border-radius:12px;
+      font-size:13px; letter-spacing:.02em; backdrop-filter:saturate(150%) blur(6px);
+      z-index:2;
+    }
+
+    /* Play icon hint (only shown when not playing) */
+    .hint{
+      position:absolute; inset:auto 10px 10px auto; z-index:2;
+      background:rgba(255,255,255,.9); color:#000; border-radius:999px; padding:6px 8px;
+      font-size:12px; display:flex; align-items:center; gap:6px;
+      transition:opacity .2s ease; opacity:.8;
+    }
+    .hint svg{ width:14px; height:14px; display:block; }
+    .card.playing .hint{ opacity:0; }
+
+    /* Reduce motion: disable hover preview animation */
+    @media (prefers-reduced-motion: reduce){
+      .card{ transition:none; }
+    }
+
+    footer{ color:var(--sub); opacity:.8; text-align:center; padding:18px 0 8px; font-size:13px }
+  </style>
 </head>
 <body>
   <div class="wrap">
-    <header class="site-header">
-      <h1 class="site-title">My Video Homepage</h1>
-      <p class="site-subtitle">Hover to preview • Click to open</p>
+    <header>
+      <h1>My Video Gallery</h1>
+      <div class="subtitle">Hover (or focus / tap) to preview • Click to open the page</div>
     </header>
 
-    <main class="grid" id="grid">
-      <!-- Duplicate/rename these 10 cards. Change href, poster, and src paths. -->
-      <a class="card" href="page1.html" aria-label="Open Video 1">
-        <img class="poster" src="assets/posters/vid1.jpg" alt="">
-        <video class="preview" preload="none" muted playsinline loop>
-          <source src="assets/videos/vid1.mp4" type="video/mp4">
+    <main class="grid" id="videoGrid">
+      <!-- CARD TEMPLATE (duplicate & edit src/poster/href/label) -->
+      <a class="card" href="video1.html" aria-label="Open Video 1 page">
+        <video preload="none" muted playsinline loop poster="assets/posters/vid1.jpg">
+          <source src="assets/videos/vid1.mp4" type="video/mp4" />
         </video>
         <span class="label">Video 1</span>
+        <span class="hint" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Preview
+        </span>
       </a>
 
-      <a class="card" href="page2.html" aria-label="Open Video 2">
-        <img class="poster" src="assets/posters/vid2.jpg" alt="">
-        <video class="preview" preload="none" muted playsinline loop>
-          <source src="assets/videos/vid2.mp4" type="video/mp4">
+      <a class="card" href="video2.html" aria-label="Open Video 2 page">
+        <video preload="none" muted playsinline loop poster="assets/posters/vid2.jpg">
+          <source src="assets/videos/vid2.mp4" type="video/mp4" />
         </video>
-        <span class="label">Video 2</span>
+        <span class="label">Video 2</span><span class="hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Preview</span>
       </a>
 
-      <a class="card" href="page3.html" aria-label="Open Video 3">
-        <img class="poster" src="assets/posters/vid3.jpg" alt="">
-        <video class="preview" preload="none" muted playsinline loop>
-          <source src="assets/videos/vid3.mp4" type="video/mp4">
+      <a class="card" href="video3.html" aria-label="Open Video 3 page">
+        <video preload="none" muted playsinline loop poster="assets/posters/vid3.jpg">
+          <source src="assets/videos/vid3.mp4" type="video/mp4" />
         </video>
-        <span class="label">Video 3</span>
+        <span class="label">Video 3</span><span class="hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Preview</span>
       </a>
 
-      <a class="card" href="page4.html" aria-label="Open Video 4">
-        <img class="poster" src="assets/posters/vid4.jpg" alt="">
-        <video class="preview" preload="none" muted playsinline loop>
-          <source src="assets/videos/vid4.mp4" type="video/mp4">
+      <a class="card" href="video4.html" aria-label="Open Video 4 page">
+        <video preload="none" muted playsinline loop poster="assets/posters/vid4.jpg">
+          <source src="assets/videos/vid4.mp4" type="video/mp4" />
         </video>
-        <span class="label">Video 4</span>
+        <span class="label">Video 4</span><span class="hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Preview</span>
       </a>
 
-      <a class="card" href="page5.html" aria-label="Open Video 5">
-        <img class="poster" src="assets/posters/vid5.jpg" alt="">
-        <video class="preview" preload="none" muted playsinline loop>
-          <source src="assets/videos/vid5.mp4" type="video/mp4">
+      <a class="card" href="video5.html" aria-label="Open Video 5 page">
+        <video preload="none" muted playsinline loop poster="assets/posters/vid5.jpg">
+          <source src="assets/videos/vid5.mp4" type="video/mp4" />
         </video>
-        <span class="label">Video 5</span>
+        <span class="label">Video 5</span><span class="hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Preview</span>
       </a>
 
-      <a class="card" href="page6.html" aria-label="Open Video 6">
-        <img class="poster" src="assets/posters/vid6.jpg" alt="">
-        <video class="preview" preload="none" muted playsinline loop>
-          <source src="assets/videos/vid6.mp4" type="video/mp4">
+      <a class="card" href="video6.html" aria-label="Open Video 6 page">
+        <video preload="none" muted playsinline loop poster="assets/posters/vid6.jpg">
+          <source src="assets/videos/vid6.mp4" type="video/mp4" />
         </video>
-        <span class="label">Video 6</span>
+        <span class="label">Video 6</span><span class="hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Preview</span>
       </a>
 
-      <a class="card" href="page7.html" aria-label="Open Video 7">
-        <img class="poster" src="assets/posters/vid7.jpg" alt="">
-        <video class="preview" preload="none" muted playsinline loop>
-          <source src="assets/videos/vid7.mp4" type="video/mp4">
+      <a class="card" href="video7.html" aria-label="Open Video 7 page">
+        <video preload="none" muted playsinline loop poster="assets/posters/vid7.jpg">
+          <source src="assets/videos/vid7.mp4" type="video/mp4" />
         </video>
-        <span class="label">Video 7</span>
+        <span class="label">Video 7</span><span class="hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Preview</span>
       </a>
 
-      <a class="card" href="page8.html" aria-label="Open Video 8">
-        <img class="poster" src="assets/posters/vid8.jpg" alt="">
-        <video class="preview" preload="none" muted playsinline loop>
-          <source src="assets/videos/vid8.mp4" type="video/mp4">
+      <a class="card" href="video8.html" aria-label="Open Video 8 page">
+        <video preload="none" muted playsinline loop poster="assets/posters/vid8.jpg">
+          <source src="assets/videos/vid8.mp4" type="video/mp4" />
         </video>
-        <span class="label">Video 8</span>
+        <span class="label">Video 8</span><span class="hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Preview</span>
       </a>
 
-      <a class="card" href="page9.html" aria-label="Open Video 9">
-        <img class="poster" src="assets/posters/vid9.jpg" alt="">
-        <video class="preview" preload="none" muted playsinline loop>
-          <source src="assets/videos/vid9.mp4" type="video/mp4">
+      <a class="card" href="video9.html" aria-label="Open Video 9 page">
+        <video preload="none" muted playsinline loop poster="assets/posters/vid9.jpg">
+          <source src="assets/videos/vid9.mp4" type="video/mp4" />
         </video>
-        <span class="label">Video 9</span>
+        <span class="label">Video 9</span><span class="hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Preview</span>
       </a>
 
-      <a class="card" href="page10.html" aria-label="Open Video 10">
-        <img class="poster" src="assets/posters/vid10.jpg" alt="">
-        <video class="preview" preload="none" muted playsinline loop>
-          <source src="assets/videos/vid10.mp4" type="video/mp4">
+      <a class="card" href="video10.html" aria-label="Open Video 10 page">
+        <video preload="none" muted playsinline loop poster="assets/posters/vid10.jpg">
+          <source src="assets/videos/vid10.mp4" type="video/mp4" />
         </video>
-        <span class="label">Video 10</span>
+        <span class="label">Video 10</span><span class="hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Preview</span>
       </a>
     </main>
 
-    <footer class="site-footer">© <span id="year"></span> Your Name</footer>
+    <footer>© <span id="year"></span> Your Name</footer>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // Helpers
+    const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+
+    // Lazy-enable video src on first interaction to save bandwidth
+    function enableVideo(video){
+      // Already loaded
+      if (video.dataset.enabled) return;
+      // If there were <source> children, browser will handle; preload stays "none"
+      video.load?.();
+      video.dataset.enabled = "1";
+    }
+
+    function startPreview(card){
+      const video = card.querySelector('video');
+      if (!video) return;
+      enableVideo(video);
+      if (prefersReduced) return; // respect reduce-motion
+      // Ensure muted/inline to allow autoplay
+      video.muted = true; video.playsInline = true;
+      video.play().then(()=>{
+        card.classList.add('playing');
+      }).catch(()=>{ /* autoplay blocked? ignore */ });
+    }
+
+    function stopPreview(card){
+      const video = card.querySelector('video');
+      if (!video) return;
+      video.pause();
+      // Rewind a little so next hover feels snappy
+      try { if (video.currentTime > 0.2) video.currentTime = 0.1; } catch {}
+      card.classList.remove('playing');
+    }
+
+    // Bind all cards
+    const cards = Array.from(document.querySelectorAll('.card'));
+
+    cards.forEach(card => {
+      // Mouse
+      card.addEventListener('mouseenter', () => startPreview(card));
+      card.addEventListener('mouseleave', () => stopPreview(card));
+
+      // Keyboard focus preview
+      card.addEventListener('focus', () => startPreview(card));
+      card.addEventListener('blur',  () => stopPreview(card));
+
+      // Touch: tap once to preview, tap again (or tap & hold briefly) still follows link
+      let tappedOnce = false;
+      card.addEventListener('touchstart', (e) => {
+        if (!tappedOnce){
+          e.preventDefault(); // stay on card to preview
+          tappedOnce = true;
+          startPreview(card);
+          setTimeout(()=>{ tappedOnce = false; }, 700); // short window for second tap to click
+        }
+      }, {passive:false});
+    });
+
+    // IntersectionObserver: prime videos when scrolled into view (keeps preload=none)
+    const io = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+      for (const entry of entries){
+        if (entry.isIntersecting){
+          const v = entry.target.querySelector('video');
+          if (v && !v.dataset.enabled){
+            // Don't actually load sources yet; just set up metadata quickly when visible
+            try { v.load(); v.dataset.enabled = "1"; } catch {}
+          }
+          io.unobserve(entry.target);
+        }
+      }
+    }, { rootMargin: '200px 0px' }) : null;
+
+    if (io){ cards.forEach(c => io.observe(c)); }
+
+    // Current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
+
 

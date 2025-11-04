@@ -1,12 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Core 1 Interaction</title>
-  </head>
-  <body>
-    <h1>THIS IS YOUR GARAGE</h1>
-    <p>This is a simple HTML page.</p>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <title>Entry 01 — Start/Stop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    /* Entry-specific styles: keep light; reuse global tokens */
+    :root{ --accent: #0A0A0A; } /* change per entry if you want an accent */
+    .entry-wrap{ width:min(var(--wrap), 92%); margin:28px auto 56px; }
+    .entry-hero{ aspect-ratio:16/9; border-radius:var(--radius); overflow:hidden; border:1px solid rgba(0,0,0,.08); background:#f4f4f4; }
+    .entry-title{ font-size:clamp(28px, 4vw, 48px); margin:8px 0 12px; }
+    .entry-meta{ color:#555; font-size:14px; margin-bottom:18px; }
+    .entry-grid{ display:grid; grid-template-columns: 1.2fr 1fr; gap:var(--gap); }
+    @media (max-width: 820px){ .entry-grid{ grid-template-columns: 1fr; } }
+    .meter{
+      display:flex; align-items:center; justify-content:center;
+      background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:var(--radius);
+      min-height:240px; position:relative;
+    }
+    .big-counter{ font-variant-numeric: tabular-nums; font-size:clamp(36px, 8vw, 120px); line-height:1; }
+    .btns{ display:flex; gap:10px; margin-top:10px; }
+    .btn{
+      border:1px solid #000; background:#fff; color:#000; padding:8px 12px; border-radius:999px;
+      font-size:14px; cursor:pointer;
+    }
+    .btn:hover{ transform:translateY(-1px); }
+    .note{ color:#555; font-size:14px; }
+    .footer-nav{ margin-top:28px; display:flex; flex-wrap:wrap; gap:8px; font-size:14px; }
+    .footer-nav a{ color:#000; text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <header class="site-header" style="text-align:center; padding:16px 0 0;">
+    <p style="margin:0; font-size:14px; color:#555">Harmonic Collection</p>
+    <h1 class="entry-title">Entry 01 — Start/Stop</h1>
+    <p class="entry-meta">Design focus: Type & hierarchy • Theme: A City by the Wheel</p>
+  </header>
+
+  <main class="entry-wrap">
+    <section class="entry-grid">
+      <div class="meter">
+        <div>
+          <div id="counter" class="big-counter">00:00</div>
+          <div class="btns">
+            <button class="btn" id="startBtn">Start</button>
+            <button class="btn" id="stopBtn">Stop</button>
+            <button class="btn" id="resetBtn">Reset</button>
+          </div>
+          <p class="note">A minimal “engine idle” timer: type scale & contrast carry the hierarchy.</p>
+        </div>
+      </div>
+      <div>
+        <div class="entry-hero">
+          <!-- You can swap this for a video if you want -->
+          <img src="../assets/images/entry01-still.jpg" alt="" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <p style="margin-top:12px">Notes: First minute of a winter morning start in Queens. Breath on glass, white sky. The piece studies weight via type scale and spacing.</p>
+      </div>
+    </section>
+
+    <nav class="footer-nav">
+      <a href="../index.html">← Back to Home</a>
+      <span>·</span>
+      <a href="./entry-02.html">Next: Entry 02 — Lanes →</a>
+    </nav>
+  </main>
+
+  <script>
+    // tiny per-entry JS (timer demo)
+    let t=0, h=null;
+    const el = document.getElementById('counter');
+    const fmt = s => {
+      const m = Math.floor(s/60).toString().padStart(2,'0');
+      const ss = (s%60).toString().padStart(2,'0');
+      return m + ':' + ss;
+    };
+    const tick = () => { t++; el.textContent = fmt(t); };
+    document.getElementById('startBtn').onclick = () => { if(h) return; h = setInterval(tick,1000); };
+    document.getElementById('stopBtn').onclick  = () => { clearInterval(h); h=null; };
+    document.getElementById('resetBtn').onclick = () => { t=0; el.textContent = '00:00'; };
+  </script>
+</body>
 </html>

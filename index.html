@@ -14,18 +14,136 @@ color: white;
 font-family: "Druk Wide Bold", sans-serif;
 font-size: 90px;
 margin-top: 180px;
+margin-bottom: 0;
 }
 p {
 color: white;
 font-family: "Druk Wide Bold", sans-serif;
 font-size: 15px;
 margin-top: 40px;
+margin-bottom: 0;
+}
+.wrap {
+width: 92%;
+margin: 40px auto 80px auto;
+display: flex;
+flex-wrap: wrap;
+}
+.box {
+width: 48%;
+margin: 1%;
+background: #111;
+overflow: hidden;
+transform: translateX(0) scale(1);
+transition: transform .25s ease;
+}
+.box a {
+display: block;
+text-decoration: none;
+}
+.box img, .box video {
+width: 100%;
+display: block;
+}
+.box video {
+display: none;
+}
+.box:hover {
+transform: translateX(8px) scale(1.05);
+}
+.box:hover video {
+display: block;
+}
+.box:hover img {
+display: none;
+}
+@media (max-width: 700px) {
+h1 { font-size: 48px; margin-top: 120px; }
+p { font-size: 13px; }
+.box { width: 98%; margin: 1% 1% 14px 1%; }
 }
 </style>
 </head>
 <body>
 <h1>THIS IS YOUR GARAGE</h1>
 <p>emmmm...I guess more like my garage</p>
+
+<div class="wrap">
+  <div class="box">
+    <a href="entries/entry1.html">
+      <img src="media/car1.jpg">
+      <video muted loop preload="metadata" src="media/car1.mp4"></video>
+    </a>
+  </div>
+  <div class="box">
+    <a href="entries/entry2.html">
+      <img src="media/car2.jpg">
+      <video muted loop preload="metadata" src="media/car2.mp4"></video>
+    </a>
+  </div>
+  <div class="box">
+    <a href="entries/entry3.html">
+      <img src="media/car3.jpg">
+      <video muted loop preload="metadata" src="media/car3.mp4"></video>
+    </a>
+  </div>
+  <div class="box">
+    <a href="entries/entry4.html">
+      <img src="media/car4.jpg">
+      <video muted loop preload="metadata" src="media/car4.mp4"></video>
+    </a>
+  </div>
+  <div class="box">
+    <a href="entries/entry5.html">
+      <img src="media/car5.jpg">
+      <video muted loop preload="metadata" src="media/car5.mp4"></video>
+    </a>
+  </div>
+  <div class="box">
+    <a href="entries/entry6.html">
+      <img src="media/car6.jpg">
+      <video muted loop preload="metadata" src="media/car6.mp4"></video>
+    </a>
+  </div>
+  <div class="box">
+    <a href="entries/entry7.html">
+      <img src="media/car7.jpg">
+      <video muted loop preload="metadata" src="media/car7.mp4"></video>
+    </a>
+  </div>
+  <div class="box">
+    <a href="entries/entry8.html">
+      <img src="media/car8.jpg">
+      <video muted loop preload="metadata" src="media/car8.mp4"></video>
+    </a>
+  </div>
+  <div class="box">
+    <a href="entries/entry9.html">
+      <img src="media/car9.jpg">
+      <video muted loop preload="metadata" src="media/car9.mp4"></video>
+    </a>
+  </div>
+  <div class="box">
+    <a href="entries/entry10.html">
+      <img src="media/car10.jpg">
+      <video muted loop preload="metadata" src="media/car10.mp4"></video>
+    </a>
+  </div>
+</div>
+
+<script>
+var boxes = document.querySelectorAll('.box');
+for (var i = 0; i < boxes.length; i++) {
+  (function(x){
+    var v = boxes[x].querySelector('video');
+    boxes[x].addEventListener('mouseenter', function(){
+      if (v) { v.play(); }
+    });
+    boxes[x].addEventListener('mouseleave', function(){
+      if (v) { v.pause(); v.currentTime = 0; }
+    });
+  })(i);
+}
+</script>
 </body>
 </html>
-

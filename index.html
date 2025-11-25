@@ -65,97 +65,89 @@ p { font-size: 13px; }
 </style>
 </head>
 <body>
-
 <h1>THIS IS YOUR GARAGE</h1>
 <p>emmmm...I guess more like my garage</p>
 
 <div class="wrap">
   <div class="box">
     <a href="entries/entry1.html">
-      <img src="Aston_Martin-One-77-2010-1280.jpg">
-      <video muted loop preload="metadata" src="Sequence01.mp4"></video>
+      <img src="Aston_Martin-One-77-2010-1280-3f332ad064a2a7d859c78bcfa13cd053c6.JPG">
+      <video muted loop preload="metadata" src="Sequence 01.mp4"></video>
     </a>
   </div>
-
   <div class="box">
     <a href="entries/entry2.html">
       <img src="media/car2.jpg">
       <video muted loop preload="metadata" src="media/car2.mp4"></video>
     </a>
   </div>
-
   <div class="box">
     <a href="entries/entry3.html">
       <img src="media/car3.jpg">
       <video muted loop preload="metadata" src="media/car3.mp4"></video>
     </a>
   </div>
-
   <div class="box">
     <a href="entries/entry4.html">
       <img src="media/car4.jpg">
       <video muted loop preload="metadata" src="media/car4.mp4"></video>
     </a>
   </div>
-
   <div class="box">
     <a href="entries/entry5.html">
       <img src="media/car5.jpg">
       <video muted loop preload="metadata" src="media/car5.mp4"></video>
     </a>
   </div>
-
   <div class="box">
     <a href="entries/entry6.html">
       <img src="media/car6.jpg">
       <video muted loop preload="metadata" src="media/car6.mp4"></video>
     </a>
   </div>
-
   <div class="box">
     <a href="entries/entry7.html">
       <img src="media/car7.jpg">
       <video muted loop preload="metadata" src="media/car7.mp4"></video>
     </a>
   </div>
-
   <div class="box">
     <a href="entries/entry8.html">
       <img src="media/car8.jpg">
       <video muted loop preload="metadata" src="media/car8.mp4"></video>
     </a>
   </div>
-
   <div class="box">
     <a href="entries/entry9.html">
       <img src="media/car9.jpg">
       <video muted loop preload="metadata" src="media/car9.mp4"></video>
     </a>
   </div>
-
   <div class="box">
     <a href="entries/entry10.html">
       <img src="media/car10.jpg">
       <video muted loop preload="metadata" src="media/car10.mp4"></video>
     </a>
   </div>
-
 </div>
 
 <script>
 var boxes = document.querySelectorAll('.box');
 for (var i = 0; i < boxes.length; i++) {
-  (function(x){
-    var v = boxes[x].querySelector('video');
-    boxes[x].addEventListener('mouseenter', function(){
-      if (v) { v.play(); }
-    });
-    boxes[x].addEventListener('mouseleave', function(){
-      if (v) { v.pause(); v.currentTime = 0; }
-    });
-  })(i);
+  boxes[i].addEventListener('mouseenter', function(){
+    var v = this.querySelector('video');
+    if (v) {
+      v.play();
+    }
+  });
+  boxes[i].addEventListener('mouseleave', function(){
+    var v = this.querySelector('video');
+    if (v) {
+      v.pause();
+      v.currentTime = 0;
+    }
+  });
 }
 </script>
-
 </body>
 </html>

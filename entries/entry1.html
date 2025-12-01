@@ -31,18 +31,17 @@ position:relative;
 }
 .kuai img {
 width:100%;
+display:block;
 }
 .yin {
 position:absolute;
 left:0;
 top:0;
-display:none;
+opacity:0;
+transition:0.2s;
 }
 .kuai:hover .yin {
-display:block;
-}
-.kuai:hover .bai {
-display:none;
+opacity:1;
 }
 </style>
 </head>
@@ -51,6 +50,7 @@ display:none;
 <div class="bt">ONE77</div>
 
 <div class="quan">
+
 <img class="tu" src="../one77white.jpg">
 <img class="tu" src="../one77white.jpg">
 <img class="tu" src="../one77white.jpg">
@@ -99,8 +99,8 @@ display:none;
 <img class="tu" src="../one77white.jpg">
 <img class="tu" src="../one77white.jpg">
 
-<div class="tu kuai">
-  <img class="bai" src="../one77white.jpg">
+  <div class="tu kuai">
+  <img src="../one77white.jpg">
   <img class="yin" src="../one77silver.jpg">
 </div>
 

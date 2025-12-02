@@ -3,51 +3,61 @@
 <head>
 <title>entry5</title>
 <style>
+
+@font-face {
+  font-family: "Druk Wide Bold";
+  src: url("../media/font/DrukWide-Bold-Trial.otf") format("opentype");
+  font-weight: bold;
+}
+
 body {
 margin:0;
 padding:0;
 background:black;
 text-align:center;
 }
+
 .bt {
 color:white;
 font-family:"Druk Wide Bold", sans-serif;
-font-size:30px;
+font-size:40px;
 margin-top:160px;
 margin-bottom:20px;
 }
+
 .jj {
 color:white;
-font-family:"Druk Wide Bold", sans-serif;
+font-family:sans-serif;
 font-size:15px;
-margin-top:40px;
-margin-bottom:40px;
-}
-.daqu {
 margin-top:20px;
 margin-bottom:40px;
 }
-.daqu img {
+
+.tp1 {
 width:60%;
 display:block;
 margin:0 auto;
+border-radius:6px;
 }
-.xiaqu {
+
+.nei {
 width:60%;
-margin:40px auto 80px auto;
+margin:40px auto 0 auto;
+color:white;
+font-family:sans-serif;
+font-size:14px;
+line-height:1.5;
+text-align:left;
 display:none;
 }
-.wenzi {
-color:white;
-font-family:"Druk Wide Bold", sans-serif;
-font-size:15px;
-width:55%;
-float:left;
+
+.tu2 {
+width:30%;
+margin-top:40px;
+display:none;
+border-radius:6px;
 }
-.xiaqu img {
-width:40%;
-float:right;
-}
+
 </style>
 </head>
 <body>
@@ -56,31 +66,30 @@ float:right;
 
 <div class="jj">A DISTINCT PERSONALITY</div>
 
-<div class="daqu">
-  <img id="datu" src="../media/jpg/e60m5blue.png">
-</div>
+< img id="datu" class="tp1" src="../media/jpg/e60m5blue.png">
 
-<div class="xiaqu" id="xiaqu">
-  <div class="wenzi">
-    The development of the BMW M5 E60 with its S85 engine began in the early 2000s. Back then, the gold standard in motor racing was 333 cc per cylinder, in series engines 500. If we take 100 hp per litre cubic capacity as the ideal in naturally aspirated engines and a goal of 500 hp, we need five litres of capacity distributed across ten cylinders. At the time, V10 engines were seen as unusual for series vehicles, even for BMW M. This motor concept was used more in Formula 1, also by BMW Motorsport. The connection was obvious: the motor blocks for the Formula 1 engines and those of the BMW M5 E60 come from the same Bavarian foundry in Landshut. This was the only connection to the Formula 1 engine.
-  </div>
+< img id="tu2" class="tu2" src="../media/jpg/s85.avif">
 
-  <img src="../media/jpg/s85.avif">
+<div id="wen" class="nei">
+The development of the BMW M5 E60 with its S85 engine began in the early 2000s. Back then, the gold standard in motor racing was 333 cc per cylinder, in series engines 500. If we take 100 hp per litre cubic capacity as the ideal in naturally aspirated engines and a goal of 500 hp, we need five litres of capacity distributed across ten cylinders. At the time, V10 engines were seen as unusual for series vehiles, even for BMW M. This motor concept was used more in Formula 1, also by BMW Motorsport. The connection was obvious: the motor blocks for the Formula 1 engines and those of the BMW M5 E60 come from the same Bavarian foundry in Landshut. This was the only connection to the Formula 1 engine.
 </div>
 
 <script>
-var datu = document.getElementById("datu");
-var xiaqu = document.getElementById("xiaqu");
+var datu=document.getElementById("datu");
+var tu2=document.getElementById("tu2");
+var wen=document.getElementById("wen");
 
-datu.onmouseenter = function(){
-datu.src = "../media/jpg/bmwf1.png";
-xiaqu.style.display = "block";
-};
+datu.onmouseenter=function(){
+datu.src="../media/jpg/bmwf1.png";
+tu2.style.display="block";
+wen.style.display="block";
+}
 
-datu.onmouseleave = function(){
-datu.src = "../media/jpg/e60m5blue.png";
-xiaqu.style.display = "none";
-};
+datu.onmouseleave=function(){
+datu.src="../media/jpg/e60m5blue.png";
+tu2.style.display="none";
+wen.style.display="none";
+}
 </script>
 
 </body>

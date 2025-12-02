@@ -105,14 +105,13 @@ a4.innerHTML='<img src="../media/jpg/enzo.jpg">';
 }
 
 a5.onclick=function(){
-if(a5.innerHTML=="2013"){
 guiling();
 a5.innerHTML='<img src="../media/jpg/laferrarired.jpg">';
-} else {
+setTimeout(function(){
 ping.style.display="block";
 sp.src="../media/mp4/laferrariredv.mp4";
 sp.play();
-}
+},1000);
 }
 
 a6.onclick=function(){

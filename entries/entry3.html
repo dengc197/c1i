@@ -1,1 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>entry3</title>
+<style>
+body {
+margin:0;
+padding:0;
+background:black;
+text-align:center;
+}
+.quan {
+width:100%;
+margin-top:160px;
+}
+.fang {
+width:35%;
+height:140px;
+background:#d40000;
+margin:18px auto;
+display:block;
+color:white;
+font-family:"Druk Wide Bold", sans-serif;
+font-size:40px;
+line-height:140px;
+}
+.fang img {
+width:100%;
+height:auto;
+display:block;
+}
+</style>
+</head>
+<body>
 
+<div class="quan">
+  <div class="fang">1984</div>
+  <div class="fang">1987</div>
+  <div class="fang">1995</div>
+  <div class="fang">2002</div>
+  <div class="fang">2013</div>
+  <div class="fang">2024</div>
+</div>
+
+<script>
+var fangkuai = document.querySelectorAll(".fang");
+var tupian = [
+  "../media/jpg/f80.jpg",
+  "../media/jpg/laferrarired.jpg",
+  "../media/jpg/enzo.jpg",
+  "../media/jpg/f50.jpg",
+  "../media/jpg/f40.jpg",
+  "../media/jpg/gto288.jpg"
+];
+
+for (var shunxu = 0; shunxu < fangkuai.length; shunxu++) {
+  (function(haoma){
+    fangkuai[haoma].addEventListener("click", function(){
+      this.innerHTML = '<img src="' + tupian[haoma] + '">';
+      this.style.lineHeight = "normal";
+    });
+  })(shunxu);
+}
+</script>
+
+</body>
+</html>

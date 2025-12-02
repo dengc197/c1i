@@ -3,12 +3,26 @@
 <head>
 <title>This Is Your Garage</title>
 <style>
+
+@font-face {
+  font-family: "Druk Wide Bold";
+  src: url("media/font/DrukWide-Bold-Trial.otf") format("opentype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Druk Text Medium";
+  src: url("media/font/DrukText-Medium-Trial.otf") format("opentype");
+  font-weight: 500;
+}
+
 body {
 background-color: black;
 margin: 0;
 padding: 0;
 text-align: center;
 }
+
 h1 {
 color: white;
 font-family: "Druk Wide Bold", sans-serif;
@@ -16,19 +30,22 @@ font-size: 90px;
 margin-top: 180px;
 margin-bottom: 0;
 }
+
 p {
 color: white;
-font-family: "Druk Wide Bold", sans-serif;
+font-family: "Druk Text Medium", sans-serif;
 font-size: 15px;
 margin-top: 40px;
 margin-bottom: 0;
 }
+
 .wrap {
 width: 92%;
 margin: 40px auto 80px auto;
 display: flex;
 flex-wrap: wrap;
 }
+
 .box {
 width: 48%;
 margin: 1%;
@@ -38,31 +55,39 @@ transform: translateX(0) scale(1);
 transition: transform .25s ease;
 border-radius: 6px;
 }
+
 .box a {
 display: block;
 text-decoration: none;
 }
+
 .box img, .box video {
 width: 100%;
 display: block;
 }
+
 .box video {
 display: none;
 }
+
 .box:hover {
 transform: translateX(8px) scale(1.05);
 }
+
 .box:hover video {
 display: block;
 }
+
 .box:hover img {
 display: none;
 }
+
 @media (max-width: 700px) {
 h1 { font-size: 48px; margin-top: 120px; }
 p { font-size: 13px; }
 .box { width: 98%; margin: 1% 1% 14px 1%; }
 }
+
 </style>
 </head>
 

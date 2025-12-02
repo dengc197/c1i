@@ -1,1 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>entry7</title>
+<style>
+body {
+margin:0;
+padding:0;
+background:black;
+text-align:center;
+}
+.bt {
+color:white;
+font-family:"Druk Wide Bold", sans-serif;
+font-size:30px;
+margin-top:160px;
+margin-bottom:40px;
+}
+.shipin {
+width:100%;
+margin-top:40px;
+}
+.shipin video {
+width:60%;
+height:auto;
+display:block;
+margin:0 auto;
+}
+</style>
+</head>
+<body>
 
+<div class="bt">V10 HARMONY</div>
+
+<div class="shipin">
+  <video id="shi" src="../media/video/lfasound.mp4"></video>
+</div>
+
+<script>
+var shi = document.getElementById("shi");
+
+shi.onmouseenter = function(){
+shi.currentTime = 0;
+shi.play();
+};
+
+shi.onmouseleave = function(){
+shi.pause();
+shi.currentTime = 0;
+};
+</script>
+
+</body>
+</html>

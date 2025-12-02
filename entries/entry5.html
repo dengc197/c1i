@@ -6,8 +6,7 @@
 
 @font-face {
   font-family: "Druk Wide Bold";
-  src: url("../media/font/DrukWide-Bold-Trial.otf") format("opentype");
-  font-weight: bold;
+  src: url("../media/font/DrukWide-Bold-Trial.otf");
 }
 
 body {
@@ -40,9 +39,16 @@ margin:0 auto;
 border-radius:6px;
 }
 
-.nei {
+.xia {
 width:60%;
 margin:40px auto 0 auto;
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+}
+
+.nei {
+width:48%;
 color:white;
 font-family:sans-serif;
 font-size:14px;
@@ -52,10 +58,9 @@ display:none;
 }
 
 .tu2 {
-width:30%;
-margin-top:40px;
-display:none;
+width:48%;
 border-radius:6px;
+display:none;
 }
 
 </style>
@@ -68,18 +73,20 @@ border-radius:6px;
 
 <img id="datu" class="tp1" src="../media/jpg/e60m5blue.png">
 
-<img id="tu2" class="tu2" src="../media/jpg/s85.avif">
+<div class="xia">
+  <div id="wen" class="nei">
+  The development of the BMW M5 E60 with its S85 engine began in the early 2000s. 
+  Back then, the gold standard in motor racing was 333 cc per cylinder, in series 
+  engines 500. If we take 100 hp per litre cubic capacity as the ideal in naturally 
+  aspirated engines and a goal of 500 hp, we need five litres of capacity distributed 
+  across ten cylinders. At the time, V10 engines were seen as unusual for series 
+  vehicles, even for BMW M. This motor concept was used more in Formula 1, also by 
+  BMW Motorsport. The connection was obvious: the motor blocks for the Formula 1 
+  engines and those of the BMW M5 E60 come from the same Bavarian foundry in Landshut. 
+  This was the only connection to the Formula 1 engine.
+  </div>
 
-<div id="wen" class="nei">
-The development of the BMW M5 E60 with its S85 engine began in the early 2000s. 
-Back then, the gold standard in motor racing was 333 cc per cylinder, in series 
-engines 500. If we take 100 hp per litre cubic capacity as the ideal in naturally 
-aspirated engines and a goal of 500 hp, we need five litres of capacity distributed 
-across ten cylinders. At the time, V10 engines were seen as unusual for series 
-vehicles, even for BMW M. This motor concept was used more in Formula 1, also by 
-BMW Motorsport. The connection was obvious: the motor blocks for the Formula 1 
-engines and those of the BMW M5 E60 come from the same Bavarian foundry in Landshut. 
-This was the only connection to the Formula 1 engine.
+  <img id="tu2" class="tu2" src="../media/jpg/s85.avif">
 </div>
 
 <script>
@@ -102,3 +109,5 @@ wen.style.display="none";
 
 </body>
 </html>
+
+

@@ -23,7 +23,6 @@ font-family:"Druk Wide Bold", sans-serif;
 font-size:68px;
 font-weight:700;
 line-height:140px;
-display:block;
 border-radius:6px;
 overflow:hidden;
 }
@@ -31,10 +30,9 @@ overflow:hidden;
 width:100%;
 height:100%;
 object-fit:cover;
-display:block;
 border-radius:6px;
 }
-.pingmu {
+.ping {
 position:fixed;
 left:0;
 top:0;
@@ -42,82 +40,92 @@ right:0;
 bottom:0;
 background:black;
 display:none;
-z-index:100;
+z-index:90;
 }
-.pingmu video {
+.ping video {
 width:100%;
 height:100%;
 object-fit:contain;
-background:black;
 }
 </style>
 </head>
 <body>
 
 <div class="quan">
-  <div class="fang">1984</div>
-  <div class="fang">1987</div>
-  <div class="fang">1995</div>
-  <div class="fang">2002</div>
-  <div class="fang">2013</div>
-  <div class="fang">2024</div>
+<div class="fang" id="a1">1984</div>
+<div class="fang" id="a2">1987</div>
+<div class="fang" id="a3">1995</div>
+<div class="fang" id="a4">2002</div>
+<div class="fang" id="a5">2013</div>
+<div class="fang" id="a6">2024</div>
 </div>
 
-<div id="pingmu" class="pingmu">
-  <video id="shipinsp" src="" controls autoplay></video>
+<div class="ping" id="ping">
+<video id="sp" src="" controls autoplay></video>
 </div>
 
 <script>
-var fanggao = 140;
-var fangkuai = document.querySelectorAll(".fang");
-var wenzi = ["1984","1987","1995","2002","2013","2024"];
-var tupian = [
-  "../media/jpg/gto288.jpg",
-  "../media/jpg/f40.jpg",
-  "../media/jpg/f50.jpg",
-  "../media/jpg/enzo.jpg",
-  "../media/jpg/laferrarired.jpg",
-  "../media/jpg/f80.jpg"
-];
-var pingmu = document.getElementById("pingmu");
-var shipinsp = document.getElementById("shipinsp");
+var a1=document.getElementById("a1");
+var a2=document.getElementById("a2");
+var a3=document.getElementById("a3");
+var a4=document.getElementById("a4");
+var a5=document.getElementById("a5");
+var a6=document.getElementById("a6");
 
-for (var i = 0; i < fangkuai.length; i++) {
-  fangkuai[i].setAttribute("data-hao", i);
-  fangkuai[i].setAttribute("data-zhuangtai", "wenzi");
+var ping=document.getElementById("ping");
+var sp=document.getElementById("sp");
+
+function guiling(){
+a1.innerHTML="1984";
+a2.innerHTML="1987";
+a3.innerHTML="1995";
+a4.innerHTML="2002";
+a5.innerHTML="2013";
+a6.innerHTML="2024";
 }
 
-for (var j = 0; j < fangkuai.length; j++) {
-  fangkuai[j].addEventListener("click", function(){
-    var shuzi = this.getAttribute("data-hao");
-    var zt = this.getAttribute("data-zhuangtai");
-    if (zt === "wenzi") {
-      this.innerHTML = '<img src="' + tupian[shuzi] + '">';
-      this.style.lineHeight = "normal";
-      this.setAttribute("data-zhuangtai", "tupian");
-    } else {
-      if (shuzi == 4) {
-        this.innerHTML = wenzi[shuzi];
-        this.style.lineHeight = fanggao + "px";
-        this.setAttribute("data-zhuangtai", "wenzi");
-        shipinsp.src = "../media/video/laferrariredv.mp4";
-        shipinsp.play();
-        pingmu.style.display = "block";
-      } else {
-        this.innerHTML = wenzi[shuzi];
-        this.style.lineHeight = fanggao + "px";
-        this.setAttribute("data-zhuangtai", "wenzi");
-      }
-    }
-  });
+a1.onclick=function(){
+guiling();
+a1.innerHTML='<img src="../media/jpg/gto288.jpg">';
 }
 
-pingmu.addEventListener("click", function(){
-  pingmu.style.display = "none";
-  shipinsp.pause();
-  shipinsp.currentTime = 0;
-  shipinsp.src = "";
-});
+a2.onclick=function(){
+guiling();
+a2.innerHTML='<img src="../media/jpg/f40.jpg">';
+}
+
+a3.onclick=function(){
+guiling();
+a3.innerHTML='<img src="../media/jpg/f50.jpg">';
+}
+
+a4.onclick=function(){
+guiling();
+a4.innerHTML='<img src="../media/jpg/enzo.jpg">';
+}
+
+a5.onclick=function(){
+if(a5.innerHTML=="2013"){
+guiling();
+a5.innerHTML='<img src="../media/jpg/laferrarired.jpg">';
+} else {
+ping.style.display="block";
+sp.src="../media/mp4/laferrariredv.mp4";
+sp.play();
+}
+}
+
+a6.onclick=function(){
+guiling();
+a6.innerHTML='<img src="../media/jpg/f80.jpg">';
+}
+
+ping.onclick=function(){
+ping.style.display="none";
+sp.pause();
+sp.currentTime=0;
+sp.src="";
+}
 </script>
 
 </body>

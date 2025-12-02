@@ -44,10 +44,11 @@ background:black;
 display:none;
 z-index:100;
 }
-.pingmu iframe {
+.pingmu video {
 width:100%;
 height:100%;
-border:0;
+object-fit:contain;
+background:black;
 }
 </style>
 </head>
@@ -63,7 +64,7 @@ border:0;
 </div>
 
 <div id="pingmu" class="pingmu">
-  <iframe id="shipinsp" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <video id="shipinsp" src="" controls autoplay></video>
 </div>
 
 <script>
@@ -78,7 +79,6 @@ var tupian = [
   "../media/jpg/laferrarired.jpg",
   "../media/jpg/f80.jpg"
 ];
-
 var pingmu = document.getElementById("pingmu");
 var shipinsp = document.getElementById("shipinsp");
 
@@ -91,23 +91,19 @@ for (var j = 0; j < fangkuai.length; j++) {
   fangkuai[j].addEventListener("click", function(){
     var shuzi = this.getAttribute("data-hao");
     var zt = this.getAttribute("data-zhuangtai");
-
     if (zt === "wenzi") {
       this.innerHTML = '<img src="' + tupian[shuzi] + '">';
       this.style.lineHeight = "normal";
       this.setAttribute("data-zhuangtai", "tupian");
     } else {
-
       if (shuzi == 4) {
         this.innerHTML = wenzi[shuzi];
         this.style.lineHeight = fanggao + "px";
         this.setAttribute("data-zhuangtai", "wenzi");
-
-        shipinsp.src = "https://www.youtube.com/embed/C_E3bSFi8lI?autoplay=1";
+        shipinsp.src = "../media/video/laferrariredv.mp4";
+        shipinsp.play();
         pingmu.style.display = "block";
-      } 
-      
-      else {
+      } else {
         this.innerHTML = wenzi[shuzi];
         this.style.lineHeight = fanggao + "px";
         this.setAttribute("data-zhuangtai", "wenzi");
@@ -118,6 +114,8 @@ for (var j = 0; j < fangkuai.length; j++) {
 
 pingmu.addEventListener("click", function(){
   pingmu.style.display = "none";
+  shipinsp.pause();
+  shipinsp.currentTime = 0;
   shipinsp.src = "";
 });
 </script>

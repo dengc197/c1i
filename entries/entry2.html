@@ -1,1 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>entry9</title>
+<style>
+body {
+margin:0;
+padding:0;
+background:black;
+text-align:center;
+}
+.zhong {
+margin-top:160px;
+}
+.tu {
+display:inline-block;
+width:20%;
+margin:0 2%;
+}
+.tu img {
+width:100%;
+display:block;
+}
+.tu button {
+margin-top:12px;
+padding:6px 16px;
+font-family:"Druk Wide Bold", sans-serif;
+font-size:12px;
+border:none;
+background:white;
+}
+</style>
+</head>
+<body>
 
+<div class="zhong">
+  <div class="tu">
+    <img id="tu1" src="../media/jpg/enginestart.png">
+    <button id="an1">CHOOSE</button>
+  </div>
+  <div class="tu">
+    <img id="tu2" src="../media/jpg/enginestart.png">
+    <button id="an2">CHOOSE</button>
+  </div>
+  <div class="tu">
+    <img id="tu3" src="../media/jpg/enginestart.png">
+    <button id="an3">CHOOSE</button>
+  </div>
+</div>
+
+<audio id="sheng1" src="../media/mp4/aventadora.mp3"></audio>
+<audio id="sheng2" src="../media/mp4/f12a.mp3"></audio>
+<audio id="sheng3" src="../media/mp4/vanquisha.mp3"></audio>
+
+<script>
+var tu1=document.getElementById("tu1");
+var tu2=document.getElementById("tu2");
+var tu3=document.getElementById("tu3");
+
+var an1=document.getElementById("an1");
+var an2=document.getElementById("an2");
+var an3=document.getElementById("an3");
+
+var sheng1=document.getElementById("sheng1");
+var sheng2=document.getElementById("sheng2");
+var sheng3=document.getElementById("sheng3");
+
+tu1.onclick=function(){
+if(sheng1.paused){
+sheng1.currentTime=0;
+sheng1.play();
+sheng2.pause();sheng2.currentTime=0;
+sheng3.pause();sheng3.currentTime=0;
+}else{
+sheng1.pause();
+sheng1.currentTime=0;
+}
+};
+
+tu2.onclick=function(){
+if(sheng2.paused){
+sheng2.currentTime=0;
+sheng2.play();
+sheng1.pause();sheng1.currentTime=0;
+sheng3.pause();sheng3.currentTime=0;
+}else{
+sheng2.pause();
+sheng2.currentTime=0;
+}
+};
+
+tu3.onclick=function(){
+if(sheng3.paused){
+sheng3.currentTime=0;
+sheng3.play();
+sheng1.pause();sheng1.currentTime=0;
+sheng2.pause();sheng2.currentTime=0;
+}else{
+sheng3.pause();
+sheng3.currentTime=0;
+}
+};
+
+an1.onclick=function(){
+tu1.src="../media/jpg/enginestart.png";
+tu2.src="../media/jpg/enginestart.png";
+tu3.src="../media/jpg/enginestart.png";
+};
+
+an2.onclick=function(){
+tu1.src="../media/jpg/enginestart.png";
+tu2.src="../media/jpg/enginestart.png";
+tu3.src="../media/jpg/enginestart.png";
+};
+
+an3.onclick=function(){
+tu1.src="../media/jpg/enginestart.png";
+tu2.src="../media/jpg/enginestart.png";
+tu3.src="../media/jpg/vanquish2.png";
+};
+</script>
+
+</body>
+</html>

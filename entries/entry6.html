@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>entry6</title>
+<style>
+body {
+margin:0;
+padding:0;
+background:black;
+text-align:center;
+}
+.bt {
+color:white;
+font-family:"Druk Wide Bold", sans-serif;
+font-size:90px;
+margin-top:160px;
+margin-bottom:40px;
+}
+.shiqu video {
+width:70%;
+display:block;
+margin:0 auto;
+border-radius:6px;
+cursor:pointer;
+}
+</style>
+</head>
+<body>
 
+<div class="bt">THE ULTIMATE DRIVING MACHINE</div>
+
+<div class="shiqu">
+  <video id="v6" src="../media/mp4/e90m3dv.mp4"></video>
+</div>
+
+<script>
+var v6 = document.getElementById("v6");
+
+v6.onclick = function(){
+if(v6.paused){
+v6.play();
+} else {
+v6.pause();
+}
+};
+</script>
+
+</body>
+</html>

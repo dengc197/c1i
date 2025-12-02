@@ -42,6 +42,19 @@ float:left;
 display:flex;
 justify-content:center;
 align-items:center;
+position:relative;
+}
+
+.wenzi {
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+color:white;
+font-family:sans-serif;
+font-size:24px;
+white-space:nowrap;
+display:block;
 }
 
 #shi {
@@ -67,6 +80,8 @@ object-fit:cover;
 </div>
 
 <div class="you">
+<div id="wen" class="wenzi">it's late at night ur 5.0L V8 LC500 will be waiting for u here</div>
+
 <div id="shi">
 <video id="v8" src="../media/mp4/lc500dv.mp4" muted></video>
 </div>
@@ -75,15 +90,18 @@ object-fit:cover;
 <script>
 var anniu=document.getElementById("anniu");
 var shi=document.getElementById("shi");
+var wen=document.getElementById("wen");
 var v8=document.getElementById("v8");
 
 anniu.onclick=function(){
+wen.style.display="none";
 shi.style.display="block";
 v8.play();
 };
 
 v8.onended=function(){
 shi.style.display="none";
+wen.style.display="block";
 };
 </script>
 

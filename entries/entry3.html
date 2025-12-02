@@ -42,10 +42,10 @@ background:black;
 display:none;
 z-index:90;
 }
-.ping video {
+.ping iframe {
 width:100%;
 height:100%;
-object-fit:contain;
+border:0;
 }
 </style>
 </head>
@@ -61,7 +61,7 @@ object-fit:contain;
 </div>
 
 <div class="ping" id="ping">
-<video id="sp" src="" controls autoplay></video>
+<iframe id="yt"></iframe>
 </div>
 
 <script>
@@ -71,9 +71,8 @@ var a3=document.getElementById("a3");
 var a4=document.getElementById("a4");
 var a5=document.getElementById("a5");
 var a6=document.getElementById("a6");
-
 var ping=document.getElementById("ping");
-var sp=document.getElementById("sp");
+var yt=document.getElementById("yt");
 
 function guiling(){
 a1.innerHTML="1984";
@@ -107,11 +106,11 @@ a4.innerHTML='<img src="../media/jpg/enzo.jpg">';
 a5.onclick=function(){
 guiling();
 a5.innerHTML='<img src="../media/jpg/laferrarired.jpg">';
+
 setTimeout(function(){
 ping.style.display="block";
-sp.src="../media/mp4/laferrariredv.mp4";
-sp.play();
-},100);
+yt.src="https://www.youtube.com/embed/C_E3bSFi8lI?autoplay=1&mute=0";
+},500);
 }
 
 a6.onclick=function(){
@@ -121,9 +120,7 @@ a6.innerHTML='<img src="../media/jpg/f80.jpg">';
 
 ping.onclick=function(){
 ping.style.display="none";
-sp.pause();
-sp.currentTime=0;
-sp.src="";
+yt.src="";
 }
 </script>
 
